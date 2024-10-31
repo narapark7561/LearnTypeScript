@@ -44,3 +44,30 @@ const dog: {
 // dog.role[1] = 10; //에러가 난다 1번인덱스는 스트링이여야하기떄문!!
 dog.nickname.push('Chasonge'); //push는 tuble에서 예외다! 허용이된다.
 console.log(dog);
+
+// Enums
+
+enum Role {
+  ADMIN,
+  READ_ONLY,
+  AUTHOR,
+}
+
+enum Roles {
+  ADMIN = 'Admin',
+  READ_ONLY = 100,
+  AUTHOR = 200,
+}
+
+const person2 = {
+  name: 'Maximilian',
+  age: 30,
+  hobbies: ['Sports', 'Coooking'],
+  role: Role.ADMIN,
+};
+
+console.log(person2.role); // output -> 0
+
+if (person2.role === Role.ADMIN) {
+  console.log(`${person2.name} is Admin!`);
+}
