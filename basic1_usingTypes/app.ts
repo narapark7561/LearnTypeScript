@@ -1,16 +1,12 @@
-function add(n1: number, n2: number) {
-  return n1 + n2;
+let userInput: unknown;
+let userName: string;
+
+userInput = 5;
+userInput = 'Max';
+if (typeof userInput === 'string') {
+  userName = userInput;
 }
 
-function printResultt(num: number): void {
-  console.log('Result: ' + num);
-}
-
-function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
-  const result = n1 + n2;
-  cb(result);
-} //cb는 콜백함수
-
-addAndHandle(10, 20, (result) => {
-  console.log(result);
-}); // output -> 30
+// unknown은 모든 값을 받을 수 있는 타입이지만, 사용 전에 반드시 타입 확인이 필요함
+// any보다 안전하고, 타입 확인을 강제함으로써 타입 오류를 줄일수있음
+// 예를 들어, userInput을 string 타입으로 좁혀야 userName에 안전하게 할당할 수 있음
