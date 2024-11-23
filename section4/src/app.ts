@@ -1,24 +1,20 @@
-// Speard Operator (...)
-const hobbies = ['Sports', 'Cooking'];
-const activeHobbies = ['Hiking'];
+// array & object destructuring
+const hobbiess = ['Sports', 'Cooking'];
 
-activeHobbies.push(...hobbies);
+// const hobby1 = hobbie[0];
+// const hobby2 = hobbie[1];
+// 이 방법은 안에 배열이 많아지면 어렵다
+// so,
 
-const person = {
-  name: 'Max',
-  age: 30,
+const [hobby1, hobby2, ...remainHobbies] = hobbiess;
+
+const mydog = {
+  firstName: 'Chai',
+  age: 3,
 };
 
-const copiedPerson = { ...person };
+// object는 key기준으로 값을 빼기때문에 key이름으로써줘야해서 밑에건 에러가난다
+// const { a, b } = mydog;
 
-console.log(copiedPerson);
-
-//Rest parameter
-const adding = (...numbers: number[]) => {
-  return numbers.reduce((curResult, curValue) => {
-    return curResult + curValue;
-  }, 0);
-};
-
-const addedNumbers = adding(5, 10, 2, 3.7);
-console.log(addedNumbers);
+const { firstName: a, age } = mydog;
+console.log(a, age); //output 'Chai 3'
