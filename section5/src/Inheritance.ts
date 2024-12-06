@@ -1,9 +1,6 @@
 class Departments {
-  //   private id: string;
-  //   // private readonly id: string;
-  //   private name: string;
-  //   //   private employees: string[] = [];
-  employees: string[] = [];
+  //   employees: string[] = [];
+  protected employees: string[] = []; // can access from child class
 
   constructor(private readonly id: string, public name: string) {
     this.id = id;
@@ -45,12 +42,22 @@ class AccountingDepartment extends Departments {
   getReport() {
     console.log(this.reports);
   }
+
+  addEmployee(name: string) {
+    if (name === 'Max') {
+      return;
+    }
+    this.employees.push(name);
+  }
 }
 
 const ac = new AccountingDepartment('ac777', ['Payment received on Dec 5']);
 ac.addReport('Payment has been cancelled');
 ac.getReport();
 console.log(ac);
+ac.addEmployee('Max');
+ac.addEmployee('Minnie');
+ac.printEmployeeInformation();
 
 const sd = new ITDepartment('sd921', ['First Admin: Chai']);
 sd.describes();
