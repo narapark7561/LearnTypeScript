@@ -31,12 +31,31 @@ class ITDepartment extends Departments {
 }
 
 class AccountingDepartment extends Departments {
+  private lastReport: string;
+
+  // getter
+  get mostRecentReport() {
+    if (this.lastReport) {
+      return this.lastReport;
+    }
+    throw new Error('No report found.');
+  }
+
+  // setter
+  set mostRecentReport(value: string) {
+    if (!value) {
+      throw new Error('Please pass the value');
+    }
+    this.addReport(value);
+  }
   constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
+    this.lastReport = reports[0];
   }
 
   addReport(text: string) {
     this.reports.push(text);
+    this.lastReport = text; // 존재이유? addReport를 통해 text가 들어오면 그 text 의 값이 lastReport에도 저장이되 불러오기 용이하다.
   }
 
   getReport() {
@@ -52,6 +71,8 @@ class AccountingDepartment extends Departments {
 }
 
 const ac = new AccountingDepartment('ac777', ['Payment received on Dec 5']);
+ac.mostRecentReport = 'This is setter report';
+console.log(ac.mostRecentReport);
 ac.addReport('Payment has been cancelled');
 ac.getReport();
 console.log(ac);
