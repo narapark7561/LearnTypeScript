@@ -34,6 +34,7 @@ class ITDepartment extends Departments {
 }
 class AccountingDepartment extends Departments {
   private lastReport: string;
+  private static instance: AccountingDepartment;
   // getter
   get mostRecentReport() {
     if (this.lastReport) {
@@ -48,9 +49,17 @@ class AccountingDepartment extends Departments {
     }
     this.addReport(value);
   }
-  constructor(id: string, private reports: string[]) {
+  private constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
     this.lastReport = reports[0];
+  }
+
+  static getInstance() {
+    if (AccountingDepartment.instance) {
+      return this.instance;
+    }
+    this.instance = new AccountingDepartment('ac921', []);
+    return this.instance;
   }
 
   //abstract
@@ -72,22 +81,7 @@ class AccountingDepartment extends Departments {
   }
 }
 
-// static example
-const employee1 = Departments.createEmployee('Nara');
-console.log(employee1, Departments.fiscalYear); // output -> { name: 'Nara' } 2020
-// 객체 리터럴에서 **{ key: value }**의 형태로 데이터를 정의할 수 있습니다.
+const accounting = AccountingDepartment.getInstance();
+const accounting2 = AccountingDepartment.getInstance();
 
-const it = new ITDepartment('it119', ['Jordan']);
-it.describes();
-const ac = new AccountingDepartment('ac777', ['Payment received on Dec 5']);
-ac.mostRecentReport = 'This is setter report'; // setter 의 쓰임
-console.log(ac.mostRecentReport); //getter 의 쓰임
-ac.addReport('Payment has been cancelled');
-ac.getReport();
-console.log(ac);
-ac.addEmployee('Max');
-ac.addEmployee('Minnie');
-// ac.printEmployeeInformation();
-
-// accounting class에 지정한 새로운 문장이 나온다.
-ac.describes();
+console.log(accounting, accounting2);
