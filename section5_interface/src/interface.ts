@@ -1,5 +1,11 @@
+// interface Greetable {
+//   name: string;
+
+//   greet(phrase: string): void;
+// }
+
 interface Greetable {
-  name: string;
+  readonly name: string;
 
   greet(phrase: string): void;
 }
@@ -18,6 +24,7 @@ class Person implements Greetable {
 
 let user1: Greetable;
 user1 = new Person('Max'); //constructor 때문에 이게 name으로 들어간다.
+// user1.name = 'nara'; //getting error bcuz 'readonly'
 
 // age도 초기화를 하고싶은가?
 // constructor(name: string, age: number) {
@@ -26,5 +33,6 @@ user1 = new Person('Max'); //constructor 때문에 이게 name으로 들어간�
 //   }
 
 user1.greet('Hi, there! I am');
+console.log(user1);
 
 // output -> Hi, there! I am Max
