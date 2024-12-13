@@ -1,18 +1,30 @@
-interface Person {
+interface Greetable {
   name: string;
-  age: number;
 
   greet(phrase: string): void;
 }
 
-let user1: Person; //sign interface as type
+class Person implements Greetable {
+  name: string;
+  age = 30;
+  constructor(n: string) {
+    this.name = n;
+  }
 
-user1 = {
-  name: 'Max',
-  age: 30,
   greet(phrase: string) {
     console.log(phrase + ' ' + this.name);
-  },
-};
+  }
+}
+
+let user1: Greetable;
+user1 = new Person('Max'); //constructor 때문에 이게 name으로 들어간다.
+
+// age도 초기화를 하고싶은가?
+// constructor(name: string, age: number) {
+//     this.name = name; // name 초기화
+//     this.age = age;   // age 초기화
+//   }
 
 user1.greet('Hi, there! I am');
+
+// output -> Hi, there! I am Max
