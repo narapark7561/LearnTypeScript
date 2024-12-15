@@ -1,36 +1,36 @@
-type Admin = {
-  name: string;
-  privileges: string[];
-};
+// type Admin = {
+//   name: string;
+//   privileges: string[];
+// };
 
-type Employee = {
-  name: string;
-  startDate: Date;
-};
+// type Employee = {
+//   name: string;
+//   startDate: Date;
+// };
 
-type ElevatedEmployee = Admin & Employee;
+// type ElevatedEmployee = Admin & Employee;
 
-const e1: ElevatedEmployee = {
-  name: 'Max',
-  privileges: ['create-sever'],
-  startDate: new Date(),
-};
+// const e1: ElevatedEmployee = {
+//   name: 'Max',
+//   privileges: ['create-sever'],
+//   startDate: new Date(),
+// };
 
-type Combinable = string | number;
-type Numeric = number | boolean;
+// type Combinable = string | number;
+// type Numeric = number | boolean;
 
-type Universal = Combinable & Numeric; //so only 'number' type will work.
+// type Universal = Combinable & Numeric; //so only 'number' type will work.
 
-// Type Guards
-function add(a: Combinable, b: Combinable) {
-  // this call 'Type Guard'
-  if (typeof a === 'string' || typeof b === 'string') {
-    return a.toString() + b.toString();
-  }
-  return a + b;
-}
+// // Type Guards
+// function add(a: Combinable, b: Combinable) {
+//   // this call 'Type Guard'
+//   if (typeof a === 'string' || typeof b === 'string') {
+//     return a.toString() + b.toString();
+//   }
+//   return a + b;
+// }
 
-type unknownEmployee = Employee | Admin;
+// type unknownEmployee = Employee | Admin;
 
 // 공통된 속성인 name은 바로 접근할 수 있지만,
 // unknownEmployee가 Admin인지 Employee인지 확인하려면 조건문(if문)이 필요하다.
