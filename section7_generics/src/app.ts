@@ -1,40 +1,23 @@
-// function merge(objA: object, objB: object) {
-//   return Object.assign(objA, objB);
-// }
+class DataStorage<T> {
+  private data: T[] = [];
 
-function merge<T extends object, U extends object>(objA: T, objB: U) {
-  return Object.assign(objA, objB);
-}
-
-const mergeObj = merge({ name: 'Max' }, { age: 30 });
-console.log(mergeObj.age);
-
-// another generic function
-
-interface Lengthy {
-  length: number;
-}
-
-function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
-  let decriptionText = 'Got no value';
-  if (element.length === 1) {
-    decriptionText = 'Got 1 elements';
-  } else if (element.length > 1) {
-    decriptionText = 'Got ' + element.length + ' elements';
+  addItem(item: T) {
+    this.data.push(item);
   }
-  return [element, decriptionText];
+
+  removeItem(item: T) {
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+
+  getItems() {
+    return [...this.data];
+  }
 }
 
-console.log(countAndDescribe('Hi there!'));
-console.log(countAndDescribe(['Sports', 'Cooking']));
+const textStorage = new DataStorage<string>();
+textStorage.addItem('Max');
+textStorage.addItem('Manu');
+textStorage.removeItem('Max');
+console.log(textStorage.getItems());
 
-// keyof contraints
-
-function extractAndConvert<T extends object, U extends keyof T>(
-  obj: T,
-  key: U
-) {
-  return 'Value' + obj[key];
-}
-
-extractAndConvert({ name: 'Max' }, 'name');
+const numberStorage = new DataStorage<number>();
